@@ -163,17 +163,17 @@ class Ig(UserInfo):
             html = self.browser.find_element_by_xpath("/html/body/pre")
             user_info_dict = json.loads(html.text)
       
-            is_private_account = user_info_dict['graphql']['user']['is_private']# private kontrol
+            is_private_account = user_info_dict['graphql']['user']['is_private']
             if is_private_account == True:
                 self.from_private +=1
                 return False
 
-            is_business_account = user_info_dict['graphql']['user']['is_business_account']# business kontrol
+            is_business_account = user_info_dict['graphql']['user']['is_business_account']
             if is_business_account == True:
                 self.from_business +=1
                 return False
 
-            full_name = user_info_dict['graphql']['user']['full_name']# full name kontrol
+            full_name = user_info_dict['graphql']['user']['full_name']
             black_names_list = ["jpg" , "business" , "admin" , "meme" , "fan" , "page" , "fashion" , "cat" , "dog" ,
                 "music" , "photo" , "moments" , "ig" , "travel" , "health" , "hot" , "girl" , "nature" , "sexy" , 
                 "account" , "best" , "quotes" , "ladie" , "car" , "tik" , "tok" , "women" , "fit" , "bird" , "money" ,
@@ -185,7 +185,7 @@ class Ig(UserInfo):
                     self.from_name +=1
                     return False
             
-            bookmark = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",# username kontorl
+            bookmark = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
                 "Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h",
                 "i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
                 "0","1","2","3","4","5","6","7","8","9","_",".","-",","]
@@ -196,7 +196,7 @@ class Ig(UserInfo):
                         self.from_name +=1
                         return False
 
-            followers = user_info_dict['graphql']['user']['edge_followed_by']['count']# follower kontrol
+            followers = user_info_dict['graphql']['user']['edge_followed_by']['count']
             that_person_follows = user_info_dict['graphql']['user']['edge_follow']['count']
             if followers > 3000 or followers < 10 or that_person_follows < 10 or that_person_follows > 2000:
                 self.from_follow +=1
